@@ -124,13 +124,25 @@ body {
 .main-content {
     transition: margin-left 0.3s ease, filter 0.3s ease;
     padding: 32px;
-    margin-left: 32px;
     max-width: 1200px;
+    margin: 0 auto; /* Center horizontally */
+    margin-left: 32px; /* Keep space for the dark edge */
 }
 
 .main-content.sidebar-open {
     margin-left: 312px;
+    margin-right: auto;
     filter: blur(3px);
+}
+
+@media (min-width: 1264px) {
+    /* On wider screens, we can maintain centering even with sidebar open */
+    .main-content.sidebar-open {
+        margin-left: 312px;
+        margin-right: 32px;
+        max-width: calc(100% - 344px);
+        width: 1200px;
+    }
 }
 
 .header {
