@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="portfolio">
+        <!-- Dark edge for sidebar activation -->
+        <div class="sidebar-edge" id="sidebarEdge"></div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <h2>[Your Name]</h2>
+                </div>
+                
+                <nav class="sidebar-menu">
+                    <button class="menu-item active" data-tab="home">
+                        <span class="icon">🏠</span>
+                        <span>Home</span>
+                    </button>
+                    <button class="menu-item" data-tab="about">
+                        <span class="icon">👤</span>
+                        <span>About</span>
+                    </button>
+                    <button class="menu-item" data-tab="projects">
+                        <span class="icon">📂</span>
+                        <span>Projects</span>
+                    </button>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <p>[Your Email]</p>
+                    <p>[Your Phone]</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Backdrop -->
+        <div class="backdrop" id="backdrop"></div>
+        
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <div class="header">
+                <h1>[Your Name]</h1>
+                <p>[Your Title/Role]</p>
+            </div>
+            
+            <!-- Home Tab -->
+            <section class="tab-content active" id="home">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="https://via.placeholder.com/150" alt="Profile">
+                    </div>
+                    <h2>[Your Name]</h2>
+                    <p>[Your Title/Role]</p>
+                    <p>[Brief Professional Summary]</p>
+                </div>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h3>Areas of Expertise</h3>
+                        <ul>
+                            <li>[Expertise Area 1]</li>
+                            <li>[Expertise Area 2]</li>
+                            <li>[Expertise Area 3]</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="expertise-card">
+                        <h3>Services</h3>
+                        <ul>
+                            <li>[Service 1]</li>
+                            <li>[Service 2]</li>
+                            <li>[Service 3]</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <h3>Let's Work Together</h3>
+                    <p>[Brief call to action or value proposition]</p>
+                    <div class="cta-buttons">
+                        <button class="btn-primary">Contact Me</button>
+                        <button class="btn-secondary">View Projects</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- About Tab -->
+            <section class="tab-content" id="about">
+                <h2>Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">[Start Date - End Date]</div>
+                        <div class="timeline-content">
+                            <h3>[Position Title]</h3>
+                            <h4>[Company Name]</h4>
+                            <p>[Description of responsibilities and achievements]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">[Start Date - End Date]</div>
+                        <div class="timeline-content">
+                            <h3>[Position Title]</h3>
+                            <h4>[Company Name]</h4>
+                            <p>[Description of responsibilities and achievements]</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2>Education</h2>
+                <div class="education-card">
+                    <h3>[University Name]</h3>
+                    <p>[Degree Type and Major]</p>
+                    <p>[Additional Details]</p>
+                </div>
+            </section>
+            
+            <!-- Projects Tab -->
+            <section class="tab-content" id="projects">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>[Project Title]</h3>
+                            <span>[Time Period]</span>
+                        </div>
+                        <p>[Project description and context]</p>
+                        <div class="project-outcomes">
+                            <h4>Key Outcomes:</h4>
+                            <ul>
+                                <li>[Key outcome 1]</li>
+                                <li>[Key outcome 2]</li>
+                                <li>[Key outcome 3]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>[Project Title]</h3>
+                            <span>[Time Period]</span>
+                        </div>
+                        <p>[Project description and context]</p>
+                        <div class="project-outcomes">
+                            <h4>Key Outcomes:</h4>
+                            <ul>
+                                <li>[Key outcome 1]</li>
+                                <li>[Key outcome 2]</li>
+                                <li>[Key outcome 3]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
