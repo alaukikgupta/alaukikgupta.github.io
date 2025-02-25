@@ -129,7 +129,6 @@ body {
 }
 
 .main-content.sidebar-open {
-    margin-left: 312px;
     filter: blur(3px);
 }
 
