@@ -177,36 +177,182 @@
             
             <!-- Projects Tab -->
             <section class="tab-content" id="projects">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>[Project Title]</h3>
-                            <span>[Time Period]</span>
-                        </div>
-                        <p>[Project description and context]</p>
-                        <div class="project-outcomes">
-                            <h4>Key Outcomes:</h4>
-                            <ul>
-                                <li>[Key outcome 1]</li>
-                                <li>[Key outcome 2]</li>
-                                <li>[Key outcome 3]</li>
-                            </ul>
+                <h2 class="section-title">My Projects</h2>
+                <p class="section-subtitle">Select a category to explore my work</p>
+                
+                <div class="project-categories">
+                    <div class="category-card" data-category="engineering">
+                        <div class="category-image" style="background-image: url('https://via.placeholder.com/800x600')"></div>
+                        <div class="category-overlay">
+                            <h3>Engineering</h3>
+                            <p>Medical devices, prototypes, and technical innovations</p>
+                            <span class="view-projects">View Projects →</span>
                         </div>
                     </div>
                     
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>[Project Title]</h3>
-                            <span>[Time Period]</span>
+                    <div class="category-card" data-category="business">
+                        <div class="category-image" style="background-image: url('https://via.placeholder.com/800x600')"></div>
+                        <div class="category-overlay">
+                            <h3>Business Analytics</h3>
+                            <p>Market research, data analysis, and strategic insights</p>
+                            <span class="view-projects">View Projects →</span>
                         </div>
-                        <p>[Project description and context]</p>
-                        <div class="project-outcomes">
-                            <h4>Key Outcomes:</h4>
-                            <ul>
-                                <li>[Key outcome 1]</li>
-                                <li>[Key outcome 2]</li>
-                                <li>[Key outcome 3]</li>
-                            </ul>
+                    </div>
+                    
+                    <div class="category-card" data-category="management">
+                        <div class="category-image" style="background-image: url('https://via.placeholder.com/800x600')"></div>
+                        <div class="category-overlay">
+                            <h3>Project Management</h3>
+                            <p>Team leadership, process optimization, and execution</p>
+                            <span class="view-projects">View Projects →</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Engineering Projects Section (Hidden by default) -->
+                <div class="project-collection" id="engineering-projects">
+                    <div class="collection-header">
+                        <button class="back-button">← Back to Categories</button>
+                        <h2>Engineering Projects</h2>
+                    </div>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Pediatric Heart Surgery Trainer</h3>
+                                <span>2021-2023</span>
+                            </div>
+                            <p>Developed a surgical training system with ML that provides haptic feedback for improved performance.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Machine learning integration</li>
+                                    <li>Haptic feedback implementation</li>
+                                    <li>Performance tracking system</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>ECMO Time Reduction Device</h3>
+                                <span>2023-2024</span>
+                            </div>
+                            <p>Medical device aimed at reducing the time required for ECMO procedures by 15 minutes.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Ultrasound integration</li>
+                                    <li>Selinger technique streamlining</li>
+                                    <li>Clinical workflow improvement</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+                        
+                        <!-- Add more engineering projects as needed -->
+                    </div>
+                </div>
+                
+                <!-- Business Analytics Projects Section (Hidden by default) -->
+                <div class="project-collection" id="business-projects">
+                    <div class="collection-header">
+                        <button class="back-button">← Back to Categories</button>
+                        <h2>Business Analytics Projects</h2>
+                    </div>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>MedTech Startup Analysis</h3>
+                                <span>2024</span>
+                            </div>
+                            <p>Financial research on MedTech startups to model, quantify, and predict startup success.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Predictive success metrics</li>
+                                    <li>Investment pattern analysis</li>
+                                    <li>Market trend identification</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Healthcare Funding Due Diligence</h3>
+                                <span>2024</span>
+                            </div>
+                            <p>Due diligence on biotech and medical device funding applications.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Assessment framework creation</li>
+                                    <li>Market opportunity analysis</li>
+                                    <li>Strategic recommendations</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+                        
+                        <!-- Add more business projects as needed -->
+                    </div>
+                </div>
+                
+                <!-- Project Management Projects Section (Hidden by default) -->
+                <div class="project-collection" id="management-projects">
+                    <div class="collection-header">
+                        <button class="back-button">← Back to Categories</button>
+                        <h2>Project Management</h2>
+                    </div>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Medical Device Clinical Innovation</h3>
+                                <span>2023</span>
+                            </div>
+                            <p>Designed and presented a medical device clinical innovation program for the Surgeon Innovators Network.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Cross-functional team leadership</li>
+                                    <li>Program structure development</li>
+                                    <li>Stakeholder alignment</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Acute Lymphocytic Leukemia Detection</h3>
+                                <span>2020-2021</span>
+                            </div>
+                            <p>Project manager for machine learning and hardware teams for leukemia detection system.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>10-member team leadership</li>
+                                    <li>Project roadmap development</li>
+                                    <li>Cross-team coordination</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+                        
+                        <!-- Add more management projects as needed -->
+                    </div>
+                </div>
+                
+                <!-- Project Detail Modal (Hidden by default) -->
+                <div class="project-modal" id="project-modal">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <div id="modal-content-container">
+                            <!-- Content will be inserted dynamically -->
                         </div>
                     </div>
                 </div>

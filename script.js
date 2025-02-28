@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuItems = document.querySelectorAll('.menu-item');
     const tabContents = document.querySelectorAll('.tab-content');
     setupGallery();
+    setupProjectsTab();
     
     // Sidebar toggle functions
     function openSidebar() {
@@ -163,7 +164,106 @@ document.addEventListener('DOMContentLoaded', function() {
             closeSidebar();
         });
     });
-    
+
+    function setupProjectsTab() {
+        // Elements
+        const categoryCards = document.querySelectorAll('.category-card');
+        const projectCollections = document.querySelectorAll('.project-collection');
+        const backButtons = document.querySelectorAll('.back-button');
+        const projectDetailsButtons = document.querySelectorAll('.project-details-btn');
+        const projectModal = document.getElementById('project-modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalContent = document.getElementById('modal-content-container');
+        
+        // Show category collection when a category card is clicked
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                const targetCollection = document.getElementById(`${category}-projects`);
+                
+                // Hide categories, show specific collection
+                document.querySelector('.project-categories').style.display = 'none';
+                projectCollections.forEach(collection => collection.classList.remove('active'));
+                targetCollection.classList.add('active');
+            });
+        });
+        
+        // Back button functionality
+        backButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Hide all collections, show categories
+                projectCollections.forEach(collection => collection.classList.remove('active'));
+                document.querySelector('.project-categories').style.display = 'grid';
+            });
+        });
+        
+        // Project details modal
+        projectDetailsButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Get project information from the parent card
+                const card = button.closest('.project-card');
+                const title = card.querySelector('h3').textContent;
+                const period = card.querySelector('.project-header span').textContent;
+                const description = card.querySelector('p').textContent;
+                
+                // Create detailed content for modal
+                const detailedContent = `
+                    <h2>${title}</h2>
+                    <p class="project-period">${period}</p>
+                    <div class="project-detail-section">
+                        <h3>Overview</h3>
+                        <p>${description}</p>
+                    </div>
+                    <div class="project-detail-section">
+                        <h3>Challenge</h3>
+                        <p>This project addressed the challenge of [expand with specific details].</p>
+                    </div>
+                    <div class="project-detail-section">
+                        <h3>Approach</h3>
+                        <p>The approach involved [expand with methodology and process].</p>
+                    </div>
+                    <div class="project-detail-section">
+                        <h3>Results</h3>
+                        <ul>
+                            <li>Result 1: [specific measurable outcome]</li>
+                            <li>Result 2: [specific measurable outcome]</li>
+                            <li>Result 3: [specific measurable outcome]</li>
+                        </ul>
+                    </div>
+                    <div class="project-detail-section">
+                        <h3>Skills Applied</h3>
+                        <div class="skills-tags">
+                            <span>Skill 1</span>
+                            <span>Skill 2</span>
+                            <span>Skill 3</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Set modal content and show
+                modalContent.innerHTML = detailedContent;
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+        
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            projectModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+        
+        // Close modal if clicking outside content
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                projectModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
     // Initialize all functionality
     setupTouchInteractions();
     setupMobileMenu();
