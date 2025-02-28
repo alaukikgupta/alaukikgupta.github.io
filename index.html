@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alaukik Guptao</title>
+    <title>Alaukik Gupta</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Add this to your head section -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +17,11 @@
 </style>
 </head>
 <body>
+    <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="portfolio">
         <!-- Dark edge for sidebar activation -->
         <div class="sidebar-edge" id="sidebarEdge"></div>
@@ -42,6 +47,14 @@
                         <span>Projects</span>
                     </button>
                 </nav>
+
+                <!-- Add this inside the sidebar-content div, before the sidebar-footer -->
+                <div class="sidebar-section">
+                    <button id="darkModeToggle" class="dark-mode-toggle-menu">
+                        <span class="icon">🌓</span>
+                        <span>Toggle Dark Mode</span>
+                    </button>
+                </div>
                 
                 <div class="sidebar-footer">
                     <p>[Your Email]</p>
