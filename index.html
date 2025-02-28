@@ -42,6 +42,10 @@
                         <span class="icon">👤</span>
                         <span>About</span>
                     </button>
+                    <button class="menu-item" data-tab="experience">
+                        <span class="icon">💼</span>
+                        <span>Experience</span>
+                    </button>
                     <button class="menu-item" data-tab="projects">
                         <span class="icon">📂</span>
                         <span>Projects</span>
@@ -144,34 +148,228 @@
                 </div>
             </section>
             
-            <!-- About Tab -->
+            <!-- About Tab (New Content) -->
             <section class="tab-content" id="about">
-                <h2>Professional Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">[Start Date - End Date]</div>
-                        <div class="timeline-content">
-                            <h3>[Position Title]</h3>
-                            <h4>[Company Name]</h4>
-                            <p>[Description of responsibilities and achievements]</p>
+                <div class="about-container">
+                    <div class="about-header">
+                        <h2>About Me</h2>
+                        <div class="bio-section">
+                            <div class="bio-image">
+                                <img src="https://via.placeholder.com/500x600" alt="Profile Photo">
+                            </div>
+                            <div class="bio-content">
+                                <p class="bio-intro">Hello! I'm [Your Name], a [Your Professional Title] with a passion for [Your Main Interest/Focus].</p>
+                                <p>I specialize in [Your Specialization], bringing together [Your Strengths] to solve complex problems.</p>
+                                <p>When I'm not working, you can find me [Your Hobbies/Interests], which helps me maintain a creative perspective.</p>
+                                <p>I believe that [Your Personal Philosophy/Professional Approach]. This mindset has guided me throughout my career and personal endeavors.</p>
+                                <div class="personal-details">
+                                    <div class="detail-item">
+                                        <span class="icon">🌍</span>
+                                        <span>Based in [Your Location]</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="icon">🎓</span>
+                                        <span>[Your Highest Education]</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="icon">💬</span>
+                                        <span>Languages: [Languages you speak]</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-date">[Start Date - End Date]</div>
-                        <div class="timeline-content">
-                            <h3>[Position Title]</h3>
-                            <h4>[Company Name]</h4>
-                            <p>[Description of responsibilities and achievements]</p>
+                    <div class="life-gallery">
+                        <h3>My Journey</h3>
+                        
+                        <div class="gallery-item">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Early Life">
+                            </div>
+                            <div class="gallery-text">
+                                <h4>Early Beginnings</h4>
+                                <p>Born and raised in [Your Hometown], I developed an interest in [Field/Interest] at an early age. [Brief story about your early influences and how they shaped your current path].</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item reverse">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Education">
+                            </div>
+                            <div class="gallery-text">
+                                <h4>Education</h4>
+                                <p>My academic journey took me to [Your University/Institute], where I [Your Education Experience]. This period was instrumental in [How it influenced your career trajectory].</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Career Highlights">
+                            </div>
+                            <div class="gallery-text">
+                                <h4>Career Highlights</h4>
+                                <p>Throughout my professional journey, I've had the opportunity to [Key Career Achievement]. One of my proudest moments was [Specific Achievement or Project] that [Impact of your work].</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item reverse">
+                            <div class="gallery-image">
+                                <img src="https://via.placeholder.com/800x500" alt="Personal Interests">
+                            </div>
+                            <div class="gallery-text">
+                                <h4>Beyond Work</h4>
+                                <p>When I'm not immersed in my professional endeavors, I enjoy [Your Hobbies and Interests]. These activities help me [How your personal interests complement your professional life].</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="values-section">
+                        <h3>Values & Philosophy</h3>
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <div class="value-icon">💡</div>
+                                <h4>Innovation</h4>
+                                <p>[How you embrace innovation in your work and life]</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">🤝</div>
+                                <h4>Collaboration</h4>
+                                <p>[Your approach to working with others]</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">🎯</div>
+                                <h4>Excellence</h4>
+                                <p>[Your commitment to quality and excellence]</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">🌱</div>
+                                <h4>Growth Mindset</h4>
+                                <p>[Your approach to continuous learning and development]</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <h2>Education</h2>
-                <div class="education-card">
-                    <h3>[University Name]</h3>
-                    <p>[Degree Type and Major]</p>
-                    <p>[Additional Details]</p>
+            </section>
+            
+            <!-- Experience Tab (Moved from About Tab) -->
+            <section class="tab-content" id="experience">
+                <div class="experience-container">
+                    <div class="experience-header">
+                        <h2>Professional Experience</h2>
+                        <p class="experience-intro">My career journey spans across [Number] years in the [Industry/Field] industry, with a focus on [Your Focus Area].</p>
+                    </div>
+                    
+                    <div class="experience-map-container">
+                        <h3>Where I've Worked</h3>
+                        <div class="experience-map" id="experienceMap">
+                            <!-- Map will be inserted here via JavaScript -->
+                            <svg viewBox="0 0 1000 600" class="world-map">
+                                <!-- World map outline SVG will go here -->
+                                <path d="M245.32,226.86c-1.15-0.14-2.53-0.72-3.77-0.29c-1.41,0.43-0.51,1.21-1.58,1.44c-1.14,0.24-1.09-0.01-1.98,0.73c-0.79,0.64-0.76,1.35-2.26,1.35 c-1.68,0-1.32,0.59-2.29,1.34c-0.2,0.47-0.37,0.94-0.51,1.4c0.44,0.03,0.91-0.16,1.24,0.05c0.5,0.31,0.09,0.88,0.37,1.31c0.18,0.36-0.29,0.1-0.73,0.37 c-0.45,0.27,0.32,0.76-0.11,1.16c-0.23,0.23-1.06,0.14-1.47,0.14c-0.35,0-0.38,0.55-0.7,0.55c-0.31,0-0.25-0.55-0.51-0.55c-0.25,0-0.15,0.55-0.44,0.55 c-0.32,0-0.14-0.37-0.5-0.55c-0.17-0.08-0.55,0.31-0.77,0.4c-0.04,0.33-0.17,0.71-0.05,1.01c0.12,0.3,0.56,0.54,0.55,0.85c-0.02,0.31-0.44,0.61-0.55,0.91 c-0.11,0.31,0.25,0.49,0.37,0.79c0.12,0.31,0.13,0.44,0.21,0.76c0.08,0.31,0.13,0.54,0.2,0.86c0.07,0.31,0.13,0.55,0.18,0.86c0.04,0.31-0.05,0.48-0.02,0.79 c0.02,0.31,0.1,0.56,0.1,0.88c0,0.32-0.05,0.56-0.06,0.88c-0.01,0.31,0.04,0.61,0.01,0.93c-0.02,0.32-0.09,0.55-0.14,0.87c-0.04,0.31-0.19,0.5-0.23,0.82 c-0.05,0.31-0.32,0.39-0.35,0.7c-0.04,0.31,0.12,0.57,0.11,0.88c-0.01,0.31-0.04,0.65-0.01,0.96c0.03,0.31,0.23,0.5,0.3,0.81c0.08,0.36,0.29,0.56,0.29,0.93 c0,0.32-0.29,0.57-0.29,0.89c0,0.28,0.21,0.57,0.44,0.75c0.21,0.25,0.51,0.56,0.72,0.8c0.24,0.29,0.17,0.53,0.16,0.89c-0.02,0.63-0.14,1.24-0.15,1.87 c-0.01,0.63,0.1,1.2,0.16,1.83c0.05,0.62,0.05,1.22,0.16,1.83c0.12,0.61,0.33,1.13,0.53,1.73c0.16,0.47,0.27,0.94,0.48,1.38c0.4,0.02,0.8,0.03,1.19,0.03 c-0.15-0.61-0.03-1.3,0-1.92c0.06-1.23-0.03-2.49,0.04-3.72c0.07-1.2,0.17-2.41,0.31-3.61c0.14-1.2,0.39-2.4,0.46-3.61c0.06-1.18-0.08-2.38,0.05-3.56 c0.13-1.18,0.77-2.11,1-3.27c0.23-1.15,0.37-2.33,0.54-3.49c0.17-1.16,0.34-2.31,0.53-3.46c0.38-2.33,0.86-4.69,0.82-7.07c-0.04-2.45-0.73-4.85-0.95-7.28" class="country" id="US" data-name="United States" data-jobs="Software Engineer, New York (2020-2022)"></path>
+                                <path d="M506.61,249.6c-1.45-0.59-2.97-1.01-4.34-1.75c-1.32-0.72-4.02-2.5-5.05-3.14c-1.39-0.9-2.72-1.91-4.02-2.92c-1.34-1.02-2.64-2.12-3.92-3.21 c-1.25-1.07-2.47-2.18-3.65-3.33c-1.17-1.16-2.25-2.4-3.34-3.65c-1.1-1.27-2.25-2.52-3.16-3.94c-0.87-1.35-2.14-3.03-3.24-4.21c-1.41-1.49-3.09-1.67-4.99-2.18 c-1.88-0.5-3.53-0.85-5.31-1.59c-1.76-0.73-3.36-1.8-5.16-2.41c-1.74-0.6-3.76-0.64-5.55-1.07c-1.81-0.44-3.54-1.15-5.36-1.51c-1.83-0.36-3.68-0.42-5.49-0.87 c-1.69-0.42-3.31-1.04-5.03-1.39c-1.92-0.39-4.38-0.28-6.35-0.28c-1.89,0-3.78,0.08-5.66,0.26c-1.85,0.18-3.68,0.49-5.51,0.8c-1.84,0.31-3.65,0.76-5.48,1.15 c-1.84,0.4-3.64,0.95-5.48,1.38c-1.84,0.43-3.62,0.91-5.41,1.48c-1.66,0.55-3.35,1.03-5.07,1.34c-1.89,0.33-3.96,0.41-5.75,1.09c-1.65,0.63-2.66,2.31-3.9,3.48 c-1.25,1.19-2.48,2.41-3.71,3.63c-1.22,1.2-2.44,2.41-3.65,3.63c-1.21,1.22-2.42,2.37-3.92,3.25c-1.85,1.1-2.94,2.38-4.5,3.83c-1.58,1.47-3.22,2.88-4.9,4.22 c-1.97,1.56-4.53,2.13-6.89,2.96c-2.48,0.87-4.94,1.79-7.46,2.52c-2.53,0.73-5.08,1.37-7.65,1.97c-2.6,0.61-5.22,1.13-7.85,1.58c-2.64,0.45-5.3,0.76-7.96,1.07 c-2.66,0.31-5.34,0.54-8.02,0.75c-2.69,0.21-5.38,0.35-8.07,0.49c-2.69,0.13-5.39,0.31-8.08,0.26c-2.73-0.05-5.43,0.25-8.15,0.04c-2.71-0.2-5.33-0.73-8-1.21 c-2.67-0.47-5.32-1.02-7.95-1.73c-2.63-0.7-5.21-1.59-7.68-2.68c-2.44-1.08-4.93-2.15-7.13-3.69c-2.29-1.59-4.22-3.55-6.13-5.62c-1.92-2.07-3.48-4.48-5.2-6.72 c-1.75-2.28-3.56-4.51-5.47-6.66c-1.86-2.07-4.04-3.81-6.16-5.6c-2.14-1.8-4.32-3.55-6.67-5.04c-2.39-1.51-4.95-2.82-7.57-3.93c-2.62-1.1-5.33-2-8.05-2.89 c-2.75-0.9-5.51-1.77-8.34-2.4c-2.86-0.64-5.77-0.99-8.67-1.43c-2.87-0.43-5.74-0.94-8.64-1.15c-2.95-0.21-5.91-0.17-8.87-0.17c-2.94,0-5.87,0.13-8.79,0.42 c-2.94,0.29-5.86,0.72-8.74,1.32c-2.89,0.6-5.73,1.37-8.54,2.23c-2.81,0.86-5.58,1.86-8.31,2.94c-2.72,1.08-5.41,2.24-8.06,3.47c-2.68,1.24-5.3,2.63-7.9,4.04 c-2.62,1.43-5.2,2.95-7.72,4.55c-2.47,1.57-4.94,3.21-7.25,5.02c-2.31,1.81-4.49,3.78-6.6,5.84c-2.1,2.06-4.03,4.31-5.96,6.55c-1.91,2.22-3.68,4.58-5.64,6.75 c-1.66,1.85-3.58,3.4-5.49,5.02c-1.97,1.68-3.96,3.34-6.08,4.82c-2.15,1.51-4.43,2.84-6.75,4.09c-2.32,1.25-4.69,2.4-7.09,3.51c-2.4,1.11-4.83,2.17-7.3,3.12 c-2.47,0.95-4.98,1.78-7.5,2.58c-2.51,0.8-5.05,1.48-7.61,2.1c-2.56,0.62-5.16,1.16-7.77,1.59c-2.86,0.47-5.57,1.51-8.41,2.08c-3.12,0.63-6.48,0.34-9.63,0.78 c-3.04,0.43-6.08,1.05-8.98,2.07c-2.68,0.94-5.61,2.08-8.3,3c-2.99,1.03-5.68,2.96-8.57,4.17c-3.03,1.27-6.14,2.38-9.28,3.37c-3.13,0.99-6.32,1.83-9.53,2.6 c-3.21,0.77-6.44,1.43-9.7,1.98c-2.05,0.35-9.22,1.39-10.99,1.39c-0.96,0-4.77,0.24-5.67,0c-0.66-0.18-1.16-0.79-1.6-1.26c-0.53-0.56-0.99-1.18-1.41-1.83 c-0.39-0.62-0.71-1.29-0.96-1.98c-0.24-0.69-0.4-1.41-0.54-2.13c-0.14-0.72-0.24-1.45-0.3-2.18c-0.06-0.73-0.09-1.47-0.08-2.21c0.01-0.74,0.06-1.47,0.13-2.2 c0.07-0.73,0.18-1.46,0.31-2.18c0.13-0.72,0.28-1.44,0.46-2.14c0.17-0.7,0.38-1.4,0.6-2.08c0.22-0.68,0.5-1.35,0.75-2.02c0.51-1.34,1.17-2.63,1.89-3.87 c0.71-1.24,1.49-2.44,2.32-3.6c0.82-1.16,1.7-2.28,2.62-3.36c0.93-1.08,1.9-2.13,2.91-3.13c1.01-1,2.05-1.97,3.18-2.85c0.98-0.77,2.05-1.53,3.28-1.92 c1.41-0.44,2.91-0.7,4.39-0.84c1.48-0.14,2.97-0.15,4.46-0.13c1.49,0.02,2.98,0.08,4.46,0.2c1.47,0.11,2.93,0.28,4.38,0.49c1.44,0.21,2.87,0.46,4.29,0.77 c1.46,0.31,2.91,0.65,4.36,0.98c1.47,0.33,2.96,0.51,4.45,0.72c1.62,0.23,3.25,0.31,4.89,0.36c1.66,0.05,3.33-0.02,4.99-0.15c1.69-0.13,3.37-0.32,5.05-0.52 c1.71-0.2,3.43-0.41,5.16-0.48c1.77-0.07,3.55,0.02,5.33,0.03c1.78,0.01,3.57-0.05,5.35-0.14c1.78-0.09,3.56-0.21,5.34-0.32c1.78-0.12,3.55-0.24,5.33-0.36 c1.72-0.11,3.45-0.2,5.18-0.3c1.77-0.1,3.53-0.22,5.3-0.35c1.78-0.13,3.55-0.28,5.32-0.44c1.78-0.17,3.57-0.15,5.35-0.14c1.77,0.02,3.54,0.18,5.3,0.2 c1.82,0.02,3.65-0.22,5.47-0.26c1.77-0.03,3.54,0.17,5.31,0.23c1.83,0.05,3.67-0.14,5.5-0.05c1.73,0.08,3.46,0.32,5.19,0.39c1.81,0.08,3.62-0.08,5.43,0.03 c1.72,0.1,3.44,0.32,5.15,0.44c1.81,0.13,3.62,0.17,5.42,0.38c1.7,0.2,3.39,0.53,5.08,0.76c1.79,0.25,3.58,0.45,5.38,0.61c1.81,0.17,3.62,0.3,5.44,0.41 c1.84,0.11,3.68,0.17,5.53,0.18c1.84,0.01,3.68-0.02,5.52-0.08c1.87-0.06,3.74-0.16,5.6-0.3c1.86-0.14,3.72-0.32,5.57-0.56c1.85-0.24,3.69-0.53,5.53-0.86 c1.84-0.33,3.66-0.71,5.48-1.13c1.81-0.42,3.65-0.88,5.34-1.63c1.56-0.69,3.69-1.3,5.05-2.31c1.36-1.01,2.45-2.27,3.55-3.52c1.09-1.24,2.13-2.53,3.2-3.77 c1.07-1.26,2.2-2.48,3.39-3.63c1.2-1.16,2.45-2
+                            </svg>
+                            <div class="map-markers">
+                                <!-- Markers will be added via JavaScript -->
+                                <div class="map-marker" data-location="New York" style="left: 245px; top: 226px;">
+                                    <div class="marker-dot"></div>
+                                    <div class="marker-tooltip">
+                                        <h4>New York</h4>
+                                        <p>Software Engineer (2020-2022)</p>
+                                    </div>
+                                </div>
+                                <div class="map-marker" data-location="London" style="left: 506px; top: 249px;">
+                                    <div class="marker-dot"></div>
+                                    <div class="marker-tooltip">
+                                        <h4>London</h4>
+                                        <p>Product Manager (2018-2020)</p>
+                                    </div>
+                                </div>
+                                <!-- Add more markers as needed -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Professional Experience</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">[Start Date - End Date]</div>
+                            <div class="timeline-content">
+                                <h3>[Position Title]</h3>
+                                <h4>[Company Name]</h4>
+                                <p>[Description of responsibilities and achievements]</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">[Start Date - End Date]</div>
+                            <div class="timeline-content">
+                                <h3>[Position Title]</h3>
+                                <h4>[Company Name]</h4>
+                                <p>[Description of responsibilities and achievements]</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Education</h2>
+                    <div class="education-card">
+                        <h3>[University Name]</h3>
+                        <p>[Degree Type and Major]</p>
+                        <p>[Additional Details]</p>
+                    </div>
+                    
+                    <div class="skills-section">
+                        <h2>Skills & Expertise</h2>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h3>Technical Skills</h3>
+                                <div class="skill-bars">
+                                    <div class="skill-item">
+                                        <div class="skill-name">[Skill 1]</div>
+                                        <div class="skill-progress">
+                                            <div class="progress-bar" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">[Skill 2]</div>
+                                        <div class="skill-progress">
+                                            <div class="progress-bar" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">[Skill 3]</div>
+                                        <div class="skill-progress">
+                                            <div class="progress-bar" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3>Soft Skills</h3>
+                                <div class="skill-bars">
+                                    <div class="skill-item">
+                                        <div class="skill-name">[Soft Skill 1]</div>
+                                        <div class="skill-progress">
+                                            <div class="progress-bar" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">[Soft Skill 2]</div>
+                                        <div class="skill-progress">
+                                            <div class="progress-bar" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">[Soft Skill 3]</div>
+                                        <div class="skill-progress">
+                                            <div class="progress-bar" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             

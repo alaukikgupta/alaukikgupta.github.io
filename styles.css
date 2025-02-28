@@ -1040,3 +1040,399 @@ h2 {
     border-radius: 50px;
     font-size: 0.9rem;
 }
+
+/* Add these styles to your existing styles.css file */
+
+/* About Tab Styles */
+.about-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.about-header {
+    margin-bottom: 3rem;
+}
+
+.bio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .bio-section {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.bio-image {
+    flex: 0 0 40%;
+}
+
+.bio-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.bio-content {
+    flex: 1;
+}
+
+.bio-intro {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: var(--accent-color);
+}
+
+.bio-content p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+}
+
+.personal-details {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.detail-item .icon {
+    font-size: 1.2rem;
+}
+
+/* Life Gallery */
+.life-gallery {
+    margin-bottom: 4rem;
+}
+
+.life-gallery h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+    .gallery-item {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .gallery-item.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+.gallery-image {
+    flex: 0 0 100%;
+}
+
+@media (min-width: 768px) {
+    .gallery-image {
+        flex: 0 0 50%;
+    }
+}
+
+.gallery-image img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.gallery-text {
+    padding: 2rem;
+    flex: 1;
+}
+
+.gallery-text h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.gallery-text p {
+    line-height: 1.7;
+}
+
+/* Values Section */
+.values-section {
+    margin-bottom: 4rem;
+}
+
+.values-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    .values-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.value-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.value-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.value-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Experience Tab Styles */
+.experience-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.experience-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.experience-intro {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.experience-map-container {
+    margin-bottom: 4rem;
+}
+
+.experience-map-container h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.experience-map {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-bottom: 2rem;
+    background-color: transparent;
+}
+
+.world-map {
+    width: 100%;
+    height: 100%;
+}
+
+.world-map path {
+    fill: transparent;
+    stroke: var(--text-color);
+    stroke-width: 0.5px;
+    transition: fill 0.3s;
+}
+
+.world-map path:hover {
+    fill: rgba(var(--accent-color-rgb), 0.1);
+}
+
+.map-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.map-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.marker-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.marker-dot::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(var(--accent-color-rgb), 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.marker-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 3;
+}
+
+.marker-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--border-color) transparent transparent transparent;
+}
+
+.map-marker:hover .marker-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.marker-tooltip h4 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.marker-tooltip p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Skills Section */
+.skills-section {
+    margin-top: 4rem;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.skill-category h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.skill-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skill-name {
+    font-weight: 500;
+}
+
+.skill-progress {
+    height: 8px;
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+}
+
+/* For CSS variable compatibility with dark mode */
+body {
+    --accent-color-rgb: 34, 34, 34;
+}
+
+.dark-mode {
+    --accent-color-rgb: 100, 181, 246;
+}

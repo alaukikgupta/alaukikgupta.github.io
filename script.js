@@ -267,6 +267,110 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+    
+    // New Function: Setup the interactive map for the Experience tab
+    function setupExperienceMap() {
+        const experienceMap = document.getElementById('experienceMap');
+        
+        if (!experienceMap) {
+            console.warn('Experience map element not found');
+            return;
+        }
+        
+        // Set up map markers interaction
+        const mapMarkers = document.querySelectorAll('.map-marker');
+        
+        mapMarkers.forEach(marker => {
+            // Optional: Add click functionality for markers
+            marker.addEventListener('click', () => {
+                const location = marker.getAttribute('data-location');
+                // You could scroll to the relevant experience section or show more info
+                console.log(`Clicked on ${location}`);
+                
+                // Example: Highlight the corresponding country on the map
+                const countryPath = document.querySelector(`.country[data-name="${location}"]`);
+                if (countryPath) {
+                    // Remove previous highlights
+                    document.querySelectorAll('.country.highlighted').forEach(c => {
+                        c.classList.remove('highlighted');
+                    });
+                    
+                    // Add highlight to clicked country
+                    countryPath.classList.add('highlighted');
+                }
+            });
+        });
+        
+        // Optional: Add functionality to animate or highlight jobs when scrolling
+        // This would require adding corresponding experience items with matching data attributes
+        const experienceItems = document.querySelectorAll('.timeline-item');
+        
+        if (experienceItems.length) {
+            // Create a simple intersection observer to detect when timeline items are visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const location = entry.target.getAttribute('data-location');
+                        if (location) {
+                            // Find and highlight the corresponding marker
+                            const marker = document.querySelector(`.map-marker[data-location="${location}"]`);
+                            if (marker) {
+                                // Add a highlight class or animation
+                                marker.classList.add('active');
+                                
+                                // Remove highlight from other markers
+                                document.querySelectorAll('.map-marker.active').forEach(m => {
+                                    if (m !== marker) m.classList.remove('active');
+                                });
+                            }
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            // Observe all timeline items
+            experienceItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+    }
+    
+    // Add animation for skill bars when they come into view
+    function setupSkillBarsAnimation() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        if (!progressBars.length) {
+            return;
+        }
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Get the desired width from the style attribute
+                    const targetWidth = entry.target.style.width;
+                    
+                    // First set width to 0
+                    entry.target.style.width = '0%';
+                    
+                    // Force a reflow
+                    entry.target.offsetWidth;
+                    
+                    // Then animate to the target width
+                    setTimeout(() => {
+                        entry.target.style.width = targetWidth;
+                    }, 100);
+                    
+                    // Unobserve after animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all progress bars
+        progressBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    }
 
     // Event listeners for sidebar
     if (sidebarEdge) {
@@ -295,6 +399,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetTab = document.getElementById(tabId);
             if (targetTab) {
                 targetTab.classList.add('active');
+                
+                // Initialize specific tab functionality when switching to it
+                if (tabId === 'experience') {
+                    setupExperienceMap();
+                    setupSkillBarsAnimation();
+                }
             } else {
                 console.error(`Tab #${tabId} not found`);
             }
@@ -306,10 +416,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize all functionality
     setupGallery();
-    setupProjectsTab(); // Now called after all DOM elements are properly set up
+    setupProjectsTab();
     setupTouchInteractions();
     setupMobileMenu();
     setupDarkMode();
+    
+    // Initialize experience map if we're starting on that tab
+    if (document.getElementById('experience').classList.contains('active')) {
+        setupExperienceMap();
+        setupSkillBarsAnimation();
+    }
     
     // Check time every hour to update dark mode if needed
     setInterval(function() {
