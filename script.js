@@ -319,26 +319,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup the US experience map
     function setupExperienceMap() {
         const experienceMap = document.getElementById('experienceMap');
+        const timelineItems = document.querySelectorAll('.timeline-item, .education-card');
         
         if (!experienceMap) {
             console.warn('Experience map element not found');
             return;
         }
         
-        console.log('Setting up experience map');
+        console.log('Setting up experience map with timeline integration');
         
-        // Get all the states in the map
+        // Get all US states and markers
         const states = experienceMap.querySelectorAll('.state');
+        const mapMarkers = document.querySelectorAll('.map-marker');
         
-        // Set up state interactions
+        // Dictionary to store locations and their related timeline items
+        const locationMap = {};
+        
+        // Process all timeline items and build location mapping
+        timelineItems.forEach(item => {
+            const location = item.getAttribute('data-location');
+            const stateId = item.getAttribute('data-state');
+            
+            if (location) {
+                if (!locationMap[location]) {
+                    locationMap[location] = [];
+                }
+                locationMap[location].push(item);
+            }
+            
+            if (stateId) {
+                if (!locationMap[stateId]) {
+                    locationMap[stateId] = [];
+                }
+                locationMap[stateId].push(item);
+            }
+        });
+        
+        console.log('Location mapping:', Object.keys(locationMap));
+        
+        // Setup state interactions
         states.forEach(state => {
             const stateId = state.getAttribute('id');
             const jobInfo = state.getAttribute('data-job');
             
-            if (jobInfo) {
-                console.log(`State ${stateId} has job info: ${jobInfo}`);
-                
-                // Add hover and click event listeners
+            if (jobInfo || locationMap[stateId]) {
+                // Add hover and click event listeners for states
                 state.addEventListener('mouseenter', () => {
                     state.classList.add('active');
                 });
@@ -356,110 +381,89 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Highlight this state
                     state.classList.add('highlighted');
                     
-                    // Display job information (could show in a tooltip or info panel)
-                    console.log(`Selected job in ${stateId}: ${jobInfo}`);
-                    
-                    // Optional: Find and activate the corresponding timeline item
-                    const stateTimeline = document.querySelector(`.timeline-item[data-state="${stateId}"]`);
-                    if (stateTimeline) {
-                        // Scroll to the timeline item
-                        stateTimeline.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        
-                        // Add a highlight class
-                        document.querySelectorAll('.timeline-item.highlighted').forEach(item => {
+                    // Find and highlight timeline items for this state
+                    if (locationMap[stateId]) {
+                        // Remove highlights from all timeline items
+                        timelineItems.forEach(item => {
                             item.classList.remove('highlighted');
                         });
-                        stateTimeline.classList.add('highlighted');
+                        
+                        // Add highlight to matching items
+                        locationMap[stateId].forEach(item => {
+                            item.classList.add('highlighted');
+                            
+                            // Scroll to the first matching item
+                            if (item === locationMap[stateId][0]) {
+                                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        });
                     }
                 });
             }
         });
         
-        // Set up map markers interaction
-        const mapMarkers = document.querySelectorAll('.map-marker');
-        
+        // Setup map marker interactions
         mapMarkers.forEach(marker => {
             const location = marker.getAttribute('data-location');
-            console.log(`Setting up marker for ${location}`);
+            const stateId = marker.getAttribute('data-state');
             
-            // Optional: Set up connection to timeline items
             marker.addEventListener('click', () => {
-                console.log(`Clicked on marker for ${location}`);
+                // Clear previous highlights from states
+                states.forEach(s => s.classList.remove('highlighted'));
                 
-                // Find corresponding state if applicable
-                const locationState = document.querySelector(`.state[data-name="${location}"]`);
-                if (locationState) {
-                    // Clear previous highlights
-                    states.forEach(s => s.classList.remove('highlighted'));
-                    
-                    // Highlight this state
-                    locationState.classList.add('highlighted');
+                // Find and highlight the corresponding state
+                if (stateId) {
+                    const state = document.getElementById(stateId);
+                    if (state) {
+                        state.classList.add('highlighted');
+                    }
                 }
                 
-                // Find corresponding timeline item
-                const locationTimeline = document.querySelector(`.timeline-item[data-location="${location}"]`);
-                if (locationTimeline) {
-                    // Scroll to the timeline item
-                    locationTimeline.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // Add a highlight class
-                    document.querySelectorAll('.timeline-item.highlighted').forEach(item => {
+                // Find and highlight timeline items for this location
+                if (locationMap[location]) {
+                    // Remove highlights from all timeline items
+                    timelineItems.forEach(item => {
                         item.classList.remove('highlighted');
                     });
-                    locationTimeline.classList.add('highlighted');
+                    
+                    // Add highlight to matching items
+                    locationMap[location].forEach(item => {
+                        item.classList.add('highlighted');
+                        
+                        // Scroll to the first matching item
+                        if (item === locationMap[location][0]) {
+                            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
                 }
             });
         });
         
-        // Add data-location attributes to timeline items if they don't have them
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-            if (!item.hasAttribute('data-location') && !item.hasAttribute('data-state')) {
-                console.log(`Adding default location data to timeline item ${index+1}`);
-                
-                // Get the marker at this index or use the first one
-                const marker = mapMarkers[index] || mapMarkers[0];
-                if (marker) {
-                    const location = marker.getAttribute('data-location');
-                    item.setAttribute('data-location', location);
-                }
-            }
-        });
-        
-        // Create a simple intersection observer to detect when timeline items are visible
+        // Set up intersection observer to highlight map points when timeline items are visible
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const location = entry.target.getAttribute('data-location');
                     const stateId = entry.target.getAttribute('data-state');
                     
-                    // Find and highlight the corresponding marker or state
+                    // Find and activate the corresponding marker
                     if (location) {
-                        console.log(`Timeline item for ${location} is visible`);
-                        
-                        // Highlight the marker
-                        const marker = document.querySelector(`.map-marker[data-location="${location}"]`);
-                        if (marker) {
-                            // Add a highlight class or animation
-                            document.querySelectorAll('.map-marker.active').forEach(m => {
-                                m.classList.remove('active');
-                            });
-                            marker.classList.add('active');
-                        }
+                        mapMarkers.forEach(marker => {
+                            marker.classList.remove('active');
+                            if (marker.getAttribute('data-location') === location) {
+                                marker.classList.add('active');
+                            }
+                        });
                     }
                     
+                    // Find and activate the corresponding state
                     if (stateId) {
-                        console.log(`Timeline item for state ${stateId} is visible`);
-                        
-                        // Highlight the state
-                        const state = document.querySelector(`.state#${stateId}`);
-                        if (state) {
-                            // Clear previous highlights
-                            states.forEach(s => s.classList.remove('active'));
-                            
-                            // Add active class
-                            state.classList.add('active');
-                        }
+                        states.forEach(state => {
+                            state.classList.remove('active');
+                            if (state.getAttribute('id') === stateId) {
+                                state.classList.add('active');
+                            }
+                        });
                     }
                 }
             });
@@ -469,6 +473,40 @@ document.addEventListener('DOMContentLoaded', function() {
         timelineItems.forEach(item => {
             observer.observe(item);
         });
+        
+        // Add styling for highlighted timeline items
+        const styleElement = document.createElement('style');
+        styleElement.textContent = `
+            .timeline-item.highlighted, .education-card.highlighted {
+                border-left: 3px solid var(--accent-color);
+                background-color: rgba(var(--accent-color-rgb), 0.05);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                transform: translateX(5px);
+                transition: all 0.3s ease;
+            }
+            
+            .map-marker.active .marker-dot {
+                background-color: var(--accent-color);
+                transform: scale(1.2);
+                box-shadow: 0 0 10px rgba(var(--accent-color-rgb), 0.7);
+            }
+            
+            .timeline-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            
+            .timeline-tags span {
+                background-color: var(--card-bg);
+                padding: 0.3rem 0.7rem;
+                border-radius: 50px;
+                font-size: 0.85rem;
+                color: var(--text-color);
+            }
+        `;
+        document.head.appendChild(styleElement);
     }
     
     // Add animation for skill bars when they come into view
