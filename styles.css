@@ -400,3 +400,47 @@ h2 {
     font-size: 24px;
     margin-bottom: 24px;
 }
+
+/* Mobile improvements */
+@media (max-width: 768px) {
+    /* Sidebar adjustments */
+    .sidebar {
+      width: 250px; /* Slightly narrower on mobile */
+    }
+    
+    /* Main content adjustments */
+    .main-content {
+      padding: 20px 16px;
+    }
+    
+    /* Typography adjustments */
+    .header h1 {
+      font-size: 28px;
+    }
+    
+    /* Grid adjustments */
+    .expertise-grid,
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    /* Button adjustments */
+    .cta-buttons {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+    }
+  }
+  
+  /* Small phones */
+  @media (max-width: 480px) {
+    .profile-image {
+      width: 100px;
+      height: 100px;
+    }
+  }

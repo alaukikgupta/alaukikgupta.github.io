@@ -18,6 +18,39 @@ document.addEventListener('DOMContentLoaded', function() {
         backdrop.classList.remove('active');
         mainContent.classList.remove('sidebar-open');
     }
+
+function setupTouchInteractions() {
+    // For mobile devices, add touch events
+    const sidebarEdge = document.getElementById('sidebarEdge');
+    
+    // Add touch event for opening sidebar
+    sidebarEdge.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      openSidebar();
+    });
+    
+    // Handle touch swipe to close sidebar
+    document.addEventListener('touchstart', function(e) {
+      const startX = e.touches[0].clientX;
+      
+      document.addEventListener('touchmove', function moveHandler(e) {
+        const currentX = e.touches[0].clientX;
+        if (startX < 100 && currentX - startX > 70) {
+          openSidebar(); // Swipe right from edge opens sidebar
+        } else if (startX > 100 && startX - currentX > 70) {
+          closeSidebar(); // Swipe left closes sidebar
+        }
+      }, { once: true });
+    });
+  }
+  
+  // Call this function when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Your existing code...
+    
+    // Add touch interactions
+    setupTouchInteractions();
+  });
     
     // Event listeners for sidebar
     sidebarEdge.addEventListener('mouseenter', openSidebar);
