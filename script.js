@@ -157,6 +157,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalClose = document.querySelector('.modal-close');
         const modalContent = document.getElementById('modal-content-container');
         
+        // Debug logs to check element availability
+        console.log('Project tab elements:');
+        console.log('Category cards:', categoryCards.length);
+        console.log('Project collections:', projectCollections.length);
+        console.log('Back buttons:', backButtons.length);
+        console.log('Detail buttons:', projectDetailsButtons.length);
+        console.log('Modal:', projectModal ? 'Found' : 'Not found');
+        
         // Check if project elements exist
         if (categoryCards.length === 0 || projectCollections.length === 0) {
             console.warn('Project tab elements not found');
@@ -167,7 +175,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const projectCategories = document.querySelector('.project-categories');
         if (projectCategories) {
             projectCategories.style.display = 'grid';
+            console.log('Set project categories display to grid');
+        } else {
+            console.warn('Project categories element not found');
         }
+        
+        // Hide all project collections initially
+        projectCollections.forEach(collection => {
+            collection.classList.remove('active');
+            console.log(`Reset collection ${collection.id}`);
+        });
         
         // Show category collection when a category card is clicked
         categoryCards.forEach(card => {
@@ -175,13 +192,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 const category = card.getAttribute('data-category');
                 const targetCollection = document.getElementById(`${category}-projects`);
                 
+                console.log(`Card clicked for category: ${category}`);
+                console.log(`Looking for collection: ${category}-projects`);
+                
                 if (targetCollection) {
+                    console.log(`Found collection: ${targetCollection.id}`);
+                    
                     // Hide categories, show specific collection
                     if (projectCategories) {
                         projectCategories.style.display = 'none';
+                        console.log('Hide project categories');
                     }
-                    projectCollections.forEach(collection => collection.classList.remove('active'));
+                    
+                    projectCollections.forEach(collection => {
+                        collection.classList.remove('active');
+                        console.log(`Removing active class from ${collection.id}`);
+                    });
+                    
                     targetCollection.classList.add('active');
+                    console.log(`Set ${targetCollection.id} as active`);
                 } else {
                     console.error(`Collection #${category}-projects not found`);
                 }
@@ -191,10 +220,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Back button functionality
         backButtons.forEach(button => {
             button.addEventListener('click', () => {
+                console.log('Back button clicked');
+                
                 // Hide all collections, show categories
-                projectCollections.forEach(collection => collection.classList.remove('active'));
+                projectCollections.forEach(collection => {
+                    collection.classList.remove('active');
+                    console.log(`Removing active class from ${collection.id}`);
+                });
+                
                 if (projectCategories) {
                     projectCategories.style.display = 'grid';
+                    console.log('Show project categories');
                 }
             });
         });
@@ -204,12 +240,15 @@ document.addEventListener('DOMContentLoaded', function() {
             projectDetailsButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
+                    console.log('Project details button clicked');
                     
                     // Get project information from the parent card
                     const card = button.closest('.project-card');
                     const title = card.querySelector('h3').textContent;
                     const period = card.querySelector('.project-header span').textContent;
                     const description = card.querySelector('p').textContent;
+                    
+                    console.log(`Project details: ${title} (${period})`);
                     
                     // Create detailed content for modal
                     const detailedContent = `
@@ -249,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     modalContent.innerHTML = detailedContent;
                     projectModal.classList.add('active');
                     document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    console.log('Modal displayed');
                 });
             });
             
@@ -256,6 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
             modalClose.addEventListener('click', () => {
                 projectModal.classList.remove('active');
                 document.body.style.overflow = ''; // Restore scrolling
+                console.log('Modal closed via close button');
             });
             
             // Close modal if clicking outside content
@@ -263,12 +304,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (e.target === projectModal) {
                     projectModal.classList.remove('active');
                     document.body.style.overflow = '';
+                    console.log('Modal closed via outside click');
                 }
             });
+        } else {
+            console.warn('Modal elements not fully available:');
+            console.log('Detail buttons:', projectDetailsButtons.length);
+            console.log('Modal:', projectModal ? 'Found' : 'Not found');
+            console.log('Modal close:', modalClose ? 'Found' : 'Not found');
+            console.log('Modal content:', modalContent ? 'Found' : 'Not found');
         }
     }
     
-    // New Function: Setup the interactive map for the Experience tab
+    // Setup the US experience map
     function setupExperienceMap() {
         const experienceMap = document.getElementById('experienceMap');
         
@@ -277,62 +325,150 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        console.log('Setting up experience map');
+        
+        // Get all the states in the map
+        const states = experienceMap.querySelectorAll('.state');
+        
+        // Set up state interactions
+        states.forEach(state => {
+            const stateId = state.getAttribute('id');
+            const jobInfo = state.getAttribute('data-job');
+            
+            if (jobInfo) {
+                console.log(`State ${stateId} has job info: ${jobInfo}`);
+                
+                // Add hover and click event listeners
+                state.addEventListener('mouseenter', () => {
+                    state.classList.add('active');
+                });
+                
+                state.addEventListener('mouseleave', () => {
+                    if (!state.classList.contains('highlighted')) {
+                        state.classList.remove('active');
+                    }
+                });
+                
+                state.addEventListener('click', () => {
+                    // Clear previous highlights
+                    states.forEach(s => s.classList.remove('highlighted'));
+                    
+                    // Highlight this state
+                    state.classList.add('highlighted');
+                    
+                    // Display job information (could show in a tooltip or info panel)
+                    console.log(`Selected job in ${stateId}: ${jobInfo}`);
+                    
+                    // Optional: Find and activate the corresponding timeline item
+                    const stateTimeline = document.querySelector(`.timeline-item[data-state="${stateId}"]`);
+                    if (stateTimeline) {
+                        // Scroll to the timeline item
+                        stateTimeline.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Add a highlight class
+                        document.querySelectorAll('.timeline-item.highlighted').forEach(item => {
+                            item.classList.remove('highlighted');
+                        });
+                        stateTimeline.classList.add('highlighted');
+                    }
+                });
+            }
+        });
+        
         // Set up map markers interaction
         const mapMarkers = document.querySelectorAll('.map-marker');
         
         mapMarkers.forEach(marker => {
-            // Optional: Add click functionality for markers
+            const location = marker.getAttribute('data-location');
+            console.log(`Setting up marker for ${location}`);
+            
+            // Optional: Set up connection to timeline items
             marker.addEventListener('click', () => {
-                const location = marker.getAttribute('data-location');
-                // You could scroll to the relevant experience section or show more info
-                console.log(`Clicked on ${location}`);
+                console.log(`Clicked on marker for ${location}`);
                 
-                // Example: Highlight the corresponding country on the map
-                const countryPath = document.querySelector(`.country[data-name="${location}"]`);
-                if (countryPath) {
-                    // Remove previous highlights
-                    document.querySelectorAll('.country.highlighted').forEach(c => {
-                        c.classList.remove('highlighted');
-                    });
+                // Find corresponding state if applicable
+                const locationState = document.querySelector(`.state[data-name="${location}"]`);
+                if (locationState) {
+                    // Clear previous highlights
+                    states.forEach(s => s.classList.remove('highlighted'));
                     
-                    // Add highlight to clicked country
-                    countryPath.classList.add('highlighted');
+                    // Highlight this state
+                    locationState.classList.add('highlighted');
+                }
+                
+                // Find corresponding timeline item
+                const locationTimeline = document.querySelector(`.timeline-item[data-location="${location}"]`);
+                if (locationTimeline) {
+                    // Scroll to the timeline item
+                    locationTimeline.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Add a highlight class
+                    document.querySelectorAll('.timeline-item.highlighted').forEach(item => {
+                        item.classList.remove('highlighted');
+                    });
+                    locationTimeline.classList.add('highlighted');
                 }
             });
         });
         
-        // Optional: Add functionality to animate or highlight jobs when scrolling
-        // This would require adding corresponding experience items with matching data attributes
-        const experienceItems = document.querySelectorAll('.timeline-item');
+        // Add data-location attributes to timeline items if they don't have them
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            if (!item.hasAttribute('data-location') && !item.hasAttribute('data-state')) {
+                console.log(`Adding default location data to timeline item ${index+1}`);
+                
+                // Get the marker at this index or use the first one
+                const marker = mapMarkers[index] || mapMarkers[0];
+                if (marker) {
+                    const location = marker.getAttribute('data-location');
+                    item.setAttribute('data-location', location);
+                }
+            }
+        });
         
-        if (experienceItems.length) {
-            // Create a simple intersection observer to detect when timeline items are visible
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const location = entry.target.getAttribute('data-location');
-                        if (location) {
-                            // Find and highlight the corresponding marker
-                            const marker = document.querySelector(`.map-marker[data-location="${location}"]`);
-                            if (marker) {
-                                // Add a highlight class or animation
-                                marker.classList.add('active');
-                                
-                                // Remove highlight from other markers
-                                document.querySelectorAll('.map-marker.active').forEach(m => {
-                                    if (m !== marker) m.classList.remove('active');
-                                });
-                            }
+        // Create a simple intersection observer to detect when timeline items are visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const location = entry.target.getAttribute('data-location');
+                    const stateId = entry.target.getAttribute('data-state');
+                    
+                    // Find and highlight the corresponding marker or state
+                    if (location) {
+                        console.log(`Timeline item for ${location} is visible`);
+                        
+                        // Highlight the marker
+                        const marker = document.querySelector(`.map-marker[data-location="${location}"]`);
+                        if (marker) {
+                            // Add a highlight class or animation
+                            document.querySelectorAll('.map-marker.active').forEach(m => {
+                                m.classList.remove('active');
+                            });
+                            marker.classList.add('active');
                         }
                     }
-                });
-            }, { threshold: 0.5 });
-            
-            // Observe all timeline items
-            experienceItems.forEach(item => {
-                observer.observe(item);
+                    
+                    if (stateId) {
+                        console.log(`Timeline item for state ${stateId} is visible`);
+                        
+                        // Highlight the state
+                        const state = document.querySelector(`.state#${stateId}`);
+                        if (state) {
+                            // Clear previous highlights
+                            states.forEach(s => s.classList.remove('active'));
+                            
+                            // Add active class
+                            state.classList.add('active');
+                        }
+                    }
+                }
             });
-        }
+        }, { threshold: 0.5 });
+        
+        // Observe all timeline items
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
     }
     
     // Add animation for skill bars when they come into view
