@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
     const sidebar = document.getElementById('sidebar');
     const sidebarEdge = document.getElementById('sidebarEdge');
     const backdrop = document.getElementById('backdrop');
     const mainContent = document.getElementById('mainContent');
     const menuItems = document.querySelectorAll('.menu-item');
     const tabContents = document.querySelectorAll('.tab-content');
+    setupGallery();
     
     // Sidebar toggle functions
     function openSidebar() {
@@ -77,7 +79,67 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
+
+    function setupGallery() {
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Function to change slide
+        function goToSlide(index) {
+            // Reset all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Activate current slide and dot
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            
+            // Reset interval
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+        
+        // Auto-advance slides
+        function startSlideShow() {
+            slideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 6000); // Change slide every 6 seconds
+        }
+        
+        // Set up event listeners
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+        
+        // Start the slideshow
+        startSlideShow();
+        
+        // Pause slideshow when hovering over gallery
+        const gallery = document.querySelector('.hero-gallery');
+        gallery.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        gallery.addEventListener('mouseleave', () => {
+            startSlideShow();
+        });
+    }
+ 
     // Event listeners for sidebar
     sidebarEdge.addEventListener('mouseenter', openSidebar);
     sidebar.addEventListener('mouseleave', closeSidebar);

@@ -48,7 +48,6 @@
                     </button>
                 </nav>
 
-                <!-- Add this inside the sidebar-content div, before the sidebar-footer -->
                 <div class="sidebar-section">
                     <button id="darkModeToggle" class="dark-mode-toggle-menu">
                         <span class="icon">🌓</span>
@@ -75,13 +74,44 @@
             
             <!-- Home Tab -->
             <section class="tab-content active" id="home">
-                <div class="profile">
-                    <div class="profile-image">
-                        <img src="https://via.placeholder.com/150" alt="Profile">
+                <div class="hero-gallery">
+                    <div class="gallery-overlay">
+                        <h1>[Your Name]</h1>
+                        <p class="tagline">[Your Professional Tagline]</p>
+                        <div class="scroll-indicator">
+                            <span>Scroll to explore</span>
+                            <div class="arrow">↓</div>
+                        </div>
                     </div>
-                    <h2>[Your Name]</h2>
-                    <p>[Your Title/Role]</p>
-                    <p>[Brief Professional Summary]</p>
+                    <div class="gallery-slider">
+                        <div class="gallery-slide active" style="background-image: url('https://via.placeholder.com/1920x1080')">
+                            <div class="slide-caption">
+                                <h2>[Project/Work Title 1]</h2>
+                                <p>[Brief description]</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/1920x1080')">
+                            <div class="slide-caption">
+                                <h2>[Project/Work Title 2]</h2>
+                                <p>[Brief description]</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/1920x1080')">
+                            <div class="slide-caption">
+                                <h2>[Project/Work Title 3]</h2>
+                                <p>[Brief description]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-controls">
+                        <button class="gallery-prev">←</button>
+                        <div class="gallery-dots">
+                            <span class="dot active" data-slide="0"></span>
+                            <span class="dot" data-slide="1"></span>
+                            <span class="dot" data-slide="2"></span>
+                        </div>
+                        <button class="gallery-next">→</button>
+                    </div>
                 </div>
                 
                 <div class="expertise-grid">
