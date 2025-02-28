@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
     const menuItems = document.querySelectorAll('.menu-item');
     const tabContents = document.querySelectorAll('.tab-content');
-    setupGallery();
-    setupProjectsTab();
     
     // Sidebar toggle functions
     function openSidebar() {
@@ -89,6 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentSlide = 0;
         let slideInterval;
 
+        // Check if gallery elements exist
+        if (!slides.length || !dots.length || !prevBtn || !nextBtn) {
+            console.warn('Gallery elements not found');
+            return;
+        }
+
         // Function to change slide
         function goToSlide(index) {
             // Reset all slides and dots
@@ -132,19 +136,148 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Pause slideshow when hovering over gallery
         const gallery = document.querySelector('.hero-gallery');
-        gallery.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-        
-        gallery.addEventListener('mouseleave', () => {
-            startSlideShow();
-        });
+        if (gallery) {
+            gallery.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            gallery.addEventListener('mouseleave', () => {
+                startSlideShow();
+            });
+        }
     }
  
+    function setupProjectsTab() {
+        // Elements
+        const categoryCards = document.querySelectorAll('.category-card');
+        const projectCollections = document.querySelectorAll('.project-collection');
+        const backButtons = document.querySelectorAll('.back-button');
+        const projectDetailsButtons = document.querySelectorAll('.project-details-btn');
+        const projectModal = document.getElementById('project-modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalContent = document.getElementById('modal-content-container');
+        
+        // Check if project elements exist
+        if (categoryCards.length === 0 || projectCollections.length === 0) {
+            console.warn('Project tab elements not found');
+            return;
+        }
+        
+        // Fix: Make sure the project categories container is visible by default
+        const projectCategories = document.querySelector('.project-categories');
+        if (projectCategories) {
+            projectCategories.style.display = 'grid';
+        }
+        
+        // Show category collection when a category card is clicked
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                const targetCollection = document.getElementById(`${category}-projects`);
+                
+                if (targetCollection) {
+                    // Hide categories, show specific collection
+                    if (projectCategories) {
+                        projectCategories.style.display = 'none';
+                    }
+                    projectCollections.forEach(collection => collection.classList.remove('active'));
+                    targetCollection.classList.add('active');
+                } else {
+                    console.error(`Collection #${category}-projects not found`);
+                }
+            });
+        });
+        
+        // Back button functionality
+        backButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Hide all collections, show categories
+                projectCollections.forEach(collection => collection.classList.remove('active'));
+                if (projectCategories) {
+                    projectCategories.style.display = 'grid';
+                }
+            });
+        });
+        
+        // Project details modal
+        if (projectDetailsButtons.length && projectModal && modalClose && modalContent) {
+            projectDetailsButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    // Get project information from the parent card
+                    const card = button.closest('.project-card');
+                    const title = card.querySelector('h3').textContent;
+                    const period = card.querySelector('.project-header span').textContent;
+                    const description = card.querySelector('p').textContent;
+                    
+                    // Create detailed content for modal
+                    const detailedContent = `
+                        <h2>${title}</h2>
+                        <p class="project-period">${period}</p>
+                        <div class="project-detail-section">
+                            <h3>Overview</h3>
+                            <p>${description}</p>
+                        </div>
+                        <div class="project-detail-section">
+                            <h3>Challenge</h3>
+                            <p>This project addressed the challenge of [expand with specific details].</p>
+                        </div>
+                        <div class="project-detail-section">
+                            <h3>Approach</h3>
+                            <p>The approach involved [expand with methodology and process].</p>
+                        </div>
+                        <div class="project-detail-section">
+                            <h3>Results</h3>
+                            <ul>
+                                <li>Result 1: [specific measurable outcome]</li>
+                                <li>Result 2: [specific measurable outcome]</li>
+                                <li>Result 3: [specific measurable outcome]</li>
+                            </ul>
+                        </div>
+                        <div class="project-detail-section">
+                            <h3>Skills Applied</h3>
+                            <div class="skills-tags">
+                                <span>Skill 1</span>
+                                <span>Skill 2</span>
+                                <span>Skill 3</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Set modal content and show
+                    modalContent.innerHTML = detailedContent;
+                    projectModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+            
+            // Close modal
+            modalClose.addEventListener('click', () => {
+                projectModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modal if clicking outside content
+            projectModal.addEventListener('click', (e) => {
+                if (e.target === projectModal) {
+                    projectModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    }
+
     // Event listeners for sidebar
-    sidebarEdge.addEventListener('mouseenter', openSidebar);
-    sidebar.addEventListener('mouseleave', closeSidebar);
-    backdrop.addEventListener('click', closeSidebar);
+    if (sidebarEdge) {
+        sidebarEdge.addEventListener('mouseenter', openSidebar);
+    }
+    if (sidebar) {
+        sidebar.addEventListener('mouseleave', closeSidebar);
+    }
+    if (backdrop) {
+        backdrop.addEventListener('click', closeSidebar);
+    }
     
     // Tab switching
     menuItems.forEach(item => {
@@ -158,113 +291,22 @@ document.addEventListener('DOMContentLoaded', function() {
             tabContents.forEach(tab => {
                 tab.classList.remove('active');
             });
-            document.getElementById(tabId).classList.add('active');
+            
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            } else {
+                console.error(`Tab #${tabId} not found`);
+            }
             
             // Close sidebar on mobile
             closeSidebar();
         });
     });
 
-    function setupProjectsTab() {
-        // Elements
-        const categoryCards = document.querySelectorAll('.category-card');
-        const projectCollections = document.querySelectorAll('.project-collection');
-        const backButtons = document.querySelectorAll('.back-button');
-        const projectDetailsButtons = document.querySelectorAll('.project-details-btn');
-        const projectModal = document.getElementById('project-modal');
-        const modalClose = document.querySelector('.modal-close');
-        const modalContent = document.getElementById('modal-content-container');
-        
-        // Show category collection when a category card is clicked
-        categoryCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const category = card.getAttribute('data-category');
-                const targetCollection = document.getElementById(`${category}-projects`);
-                
-                // Hide categories, show specific collection
-                document.querySelector('.project-categories').style.display = 'none';
-                projectCollections.forEach(collection => collection.classList.remove('active'));
-                targetCollection.classList.add('active');
-            });
-        });
-        
-        // Back button functionality
-        backButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Hide all collections, show categories
-                projectCollections.forEach(collection => collection.classList.remove('active'));
-                document.querySelector('.project-categories').style.display = 'grid';
-            });
-        });
-        
-        // Project details modal
-        projectDetailsButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                
-                // Get project information from the parent card
-                const card = button.closest('.project-card');
-                const title = card.querySelector('h3').textContent;
-                const period = card.querySelector('.project-header span').textContent;
-                const description = card.querySelector('p').textContent;
-                
-                // Create detailed content for modal
-                const detailedContent = `
-                    <h2>${title}</h2>
-                    <p class="project-period">${period}</p>
-                    <div class="project-detail-section">
-                        <h3>Overview</h3>
-                        <p>${description}</p>
-                    </div>
-                    <div class="project-detail-section">
-                        <h3>Challenge</h3>
-                        <p>This project addressed the challenge of [expand with specific details].</p>
-                    </div>
-                    <div class="project-detail-section">
-                        <h3>Approach</h3>
-                        <p>The approach involved [expand with methodology and process].</p>
-                    </div>
-                    <div class="project-detail-section">
-                        <h3>Results</h3>
-                        <ul>
-                            <li>Result 1: [specific measurable outcome]</li>
-                            <li>Result 2: [specific measurable outcome]</li>
-                            <li>Result 3: [specific measurable outcome]</li>
-                        </ul>
-                    </div>
-                    <div class="project-detail-section">
-                        <h3>Skills Applied</h3>
-                        <div class="skills-tags">
-                            <span>Skill 1</span>
-                            <span>Skill 2</span>
-                            <span>Skill 3</span>
-                        </div>
-                    </div>
-                `;
-                
-                // Set modal content and show
-                modalContent.innerHTML = detailedContent;
-                projectModal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            });
-        });
-        
-        // Close modal
-        modalClose.addEventListener('click', () => {
-            projectModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
-        });
-        
-        // Close modal if clicking outside content
-        projectModal.addEventListener('click', (e) => {
-            if (e.target === projectModal) {
-                projectModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-
     // Initialize all functionality
+    setupGallery();
+    setupProjectsTab(); // Now called after all DOM elements are properly set up
     setupTouchInteractions();
     setupMobileMenu();
     setupDarkMode();
