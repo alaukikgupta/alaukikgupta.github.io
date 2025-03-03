@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const projectsTabButton = document.querySelector('.menu-item[data-tab="projects"]');
                 if (projectsTabButton) {
                     projectsTabButton.click();
+                    setupProjectsTab();
                 }
             });
-            setupProjectsTab();
         }
     });
     
