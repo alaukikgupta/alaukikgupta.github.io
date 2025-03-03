@@ -6,6 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
     const menuItems = document.querySelectorAll('.menu-item');
     const tabContents = document.querySelectorAll('.tab-content');
+
+    // Add functionality for "View Projects" button
+    document.addEventListener('DOMContentLoaded', function() {
+        const viewProjectsBtn = document.getElementById('viewProjectsBtn');
+        if (viewProjectsBtn) {
+            viewProjectsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Find and click the projects tab button
+                const projectsTabButton = document.querySelector('.menu-item[data-tab="projects"]');
+                if (projectsTabButton) {
+                    projectsTabButton.click();
+                }
+            });
+        }
+    });
     
     // Sidebar toggle functions
     function openSidebar() {

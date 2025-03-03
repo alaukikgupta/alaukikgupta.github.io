@@ -1706,3 +1706,9 @@ h2 {
       width: 160px;
     }
   }
+  
+  /* Fix buttons as links */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    text-decoration: none;
+}
