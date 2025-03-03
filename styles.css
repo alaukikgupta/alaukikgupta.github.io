@@ -1444,3 +1444,40 @@ h2 {
         font-size: 0.9rem;
     }
 }
+/* Fix for Projects Tab Spacing */
+
+/* Adjust top spacing for the projects tab */
+#projects {
+    padding-top: 0; /* Remove top padding */
+    margin-top: 0; /* Remove top margin */
+}
+
+/* Fix section title spacing */
+#projects .section-title {
+    margin-top: 20px; /* Add controlled top margin */
+}
+
+/* Fix nested margins */
+.tab-content {
+    margin-top: 0;
+}
+
+/* Additional spacing fixes */
+.main-content {
+    padding-top: 20px; /* Reduce top padding of main content */
+}
+
+/* Ensure sidebar doesn't create extra space */
+.portfolio {
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Make sure the section title's position is relative to its container */
+#projects .section-title:after {
+    bottom: -8px; /* Move up the underline */
+}
+
+/* Reduce space between title and subtitle */
+#projects .section-subtitle {
+    margin-top: 15px;
+}
