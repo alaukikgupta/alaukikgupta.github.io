@@ -177,33 +177,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalClose = document.querySelector('.modal-close');
         const modalContent = document.getElementById('modal-content-container');
         
-        // Debug logs to check element availability
-        console.log('Project tab elements:');
-        console.log('Category cards:', categoryCards.length);
-        console.log('Project collections:', projectCollections.length);
-        console.log('Back buttons:', backButtons.length);
-        console.log('Detail buttons:', projectDetailsButtons.length);
-        console.log('Modal:', projectModal ? 'Found' : 'Not found');
-        
         // Check if project elements exist
         if (categoryCards.length === 0 || projectCollections.length === 0) {
             console.warn('Project tab elements not found');
             return;
         }
         
-        // Fix: Make sure the project categories container is visible by default
+        // Make sure the project categories container is visible by default
         const projectCategories = document.querySelector('.project-categories');
         if (projectCategories) {
             projectCategories.style.display = 'grid';
-            console.log('Set project categories display to grid');
-        } else {
-            console.warn('Project categories element not found');
         }
         
         // Hide all project collections initially
         projectCollections.forEach(collection => {
             collection.classList.remove('active');
-            console.log(`Reset collection ${collection.id}`);
         });
         
         // Show category collection when a category card is clicked
@@ -212,27 +200,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 const category = card.getAttribute('data-category');
                 const targetCollection = document.getElementById(`${category}-projects`);
                 
-                console.log(`Card clicked for category: ${category}`);
-                console.log(`Looking for collection: ${category}-projects`);
-                
                 if (targetCollection) {
-                    console.log(`Found collection: ${targetCollection.id}`);
-                    
                     // Hide categories, show specific collection
                     if (projectCategories) {
                         projectCategories.style.display = 'none';
-                        console.log('Hide project categories');
                     }
                     
                     projectCollections.forEach(collection => {
                         collection.classList.remove('active');
-                        console.log(`Removing active class from ${collection.id}`);
                     });
                     
                     targetCollection.classList.add('active');
-                    console.log(`Set ${targetCollection.id} as active`);
-                } else {
-                    console.error(`Collection #${category}-projects not found`);
+                    
+                    // Scroll to the collection
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: document.querySelector('.section-title').offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
                 }
             });
         });
@@ -240,17 +226,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // Back button functionality
         backButtons.forEach(button => {
             button.addEventListener('click', () => {
-                console.log('Back button clicked');
-                
                 // Hide all collections, show categories
                 projectCollections.forEach(collection => {
                     collection.classList.remove('active');
-                    console.log(`Removing active class from ${collection.id}`);
                 });
                 
                 if (projectCategories) {
                     projectCategories.style.display = 'grid';
-                    console.log('Show project categories');
+                    
+                    // Scroll back to the top of projects section
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: document.querySelector('.section-title').offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
                 }
             });
         });
@@ -260,15 +250,12 @@ document.addEventListener('DOMContentLoaded', function() {
             projectDetailsButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    console.log('Project details button clicked');
                     
                     // Get project information from the parent card
                     const card = button.closest('.project-card');
                     const title = card.querySelector('h3').textContent;
                     const period = card.querySelector('.project-header span').textContent;
                     const description = card.querySelector('p').textContent;
-                    
-                    console.log(`Project details: ${title} (${period})`);
                     
                     // Create detailed content for modal
                     const detailedContent = `
@@ -308,7 +295,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     modalContent.innerHTML = detailedContent;
                     projectModal.classList.add('active');
                     document.body.style.overflow = 'hidden'; // Prevent scrolling
-                    console.log('Modal displayed');
                 });
             });
             
@@ -316,7 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modalClose.addEventListener('click', () => {
                 projectModal.classList.remove('active');
                 document.body.style.overflow = ''; // Restore scrolling
-                console.log('Modal closed via close button');
             });
             
             // Close modal if clicking outside content
@@ -324,15 +309,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (e.target === projectModal) {
                     projectModal.classList.remove('active');
                     document.body.style.overflow = '';
-                    console.log('Modal closed via outside click');
                 }
             });
-        } else {
-            console.warn('Modal elements not fully available:');
-            console.log('Detail buttons:', projectDetailsButtons.length);
-            console.log('Modal:', projectModal ? 'Found' : 'Not found');
-            console.log('Modal close:', modalClose ? 'Found' : 'Not found');
-            console.log('Modal content:', modalContent ? 'Found' : 'Not found');
         }
     }
     
