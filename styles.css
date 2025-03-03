@@ -1165,56 +1165,6 @@ h2 {
     margin-bottom: 4rem;
 }
 
-.gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-.gallery-overlay h1 {
-    font-size: 3.5rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.gallery-overlay .tagline {
-    font-size: 1.5rem;
-    max-width: 600px;
-    margin-bottom: 2rem;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.scroll-indicator:hover {
-    opacity: 1;
-}
-
-.scroll-indicator .arrow {
-    animation: bounce 2s infinite;
-    font-size: 1.5rem;
-    margin-top: 0.5rem;
-}
-
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -1756,3 +1706,64 @@ h2 {
       width: 160px;
     }
   }
+
+  /* Add these CSS fixes to your styles.css file or directly in the head section */
+
+/* Remove gallery overlay */
+.gallery-overlay {
+    display: none !important;
+}
+
+/* Enhanced slide captions */
+.slide-caption {
+    position: absolute;
+    bottom: 4rem;
+    left: 4rem;
+    max-width: 500px;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* Fix buttons as links */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Remove experience map container */
+.experience-map-container {
+    display: none;
+}
+
+/* Hide the Values section */
+.values-section {
+    display: none;
+}
+
+/* Remove expertise grid */
+.expertise-grid {
+    display: none;
+}
+
+/* Force display for project categories */
+.project-categories {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .project-categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .project-categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
