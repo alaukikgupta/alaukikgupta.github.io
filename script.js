@@ -6,30 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
     const menuItems = document.querySelectorAll('.menu-item');
     const tabContents = document.querySelectorAll('.tab-content');
+    const viewProjectsBtn = document.getElementById('viewProjectsBtn');
 
-    // Add functionality for "View Projects" button
-    document.addEventListener('DOMContentLoaded', function() {
-        // Setup View Projects button - fixed implementation
-        const viewProjectsBtn = document.getElementById('viewProjectsBtn');
-        
-        if (viewProjectsBtn) {
-            viewProjectsBtn.addEventListener('click', function(e) {
-                e.preventDefault();
+    // Fix for View Projects button - direct implementation in the main event listener
+    if (viewProjectsBtn) {
+        viewProjectsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log("View Projects button clicked");
+            
+            // Find and click the projects tab button
+            const projectsTabButton = document.querySelector('.menu-item[data-tab="projects"]');
+            if (projectsTabButton) {
+                projectsTabButton.click();
                 
-                // Find and click the projects tab button
-                const projectsTabButton = document.querySelector('.menu-item[data-tab="projects"]');
-                if (projectsTabButton) {
-                    projectsTabButton.click();
-                    
-                    // Since the click handler for menu-items might not immediately initialize the projects tab
-                    // Let's add a small delay to ensure the tab is visible before initializing
-                    setTimeout(function() {
-                        setupProjectsTab();
-                    }, 50);
-                }
-            });
-        }
-    });
+                // Short delay to ensure the projects tab is ready
+                setTimeout(function() {
+                    setupProjectsTab();
+                }, 100);
+            }
+        });
+    }
     
     // Sidebar toggle functions
     function openSidebar() {
@@ -186,6 +182,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalClose = document.querySelector('.modal-close');
         const modalContent = document.getElementById('modal-content-container');
         
+        console.log("Setting up projects tab");
+        
         // Check if project elements exist
         if (categoryCards.length === 0 || projectCollections.length === 0) {
             console.warn('Project tab elements not found');
@@ -209,6 +207,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const category = card.getAttribute('data-category');
                 const targetCollection = document.getElementById(`${category}-projects`);
                 
+                console.log(`Card clicked for ${category}`);
+                
                 if (targetCollection) {
                     // Hide categories, show specific collection
                     if (projectCategories) {
@@ -221,13 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     targetCollection.classList.add('active');
                     
-                    // Scroll to the collection
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: document.querySelector('.section-title').offsetTop - 20,
-                            behavior: 'smooth'
-                        });
-                    }, 100);
+                    // No scroll needed - just show the content where it is
                 }
             });
         });
@@ -243,13 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (projectCategories) {
                     projectCategories.style.display = 'grid';
                     
-                    // Scroll back to the top of projects section
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: document.querySelector('.section-title').offsetTop - 20,
-                            behavior: 'smooth'
-                        });
-                    }, 100);
+                    // No scroll needed - just show the content where it is
                 }
             });
         });
@@ -585,6 +573,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (tabId === 'experience') {
                     setupExperienceMap();
                     setupSkillBarsAnimation();
+                } else if (tabId === 'projects') {
+                    setupProjectsTab();
                 }
             } else {
                 console.error(`Tab #${tabId} not found`);

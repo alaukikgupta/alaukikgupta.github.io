@@ -1491,3 +1491,81 @@ h2 {
 body .tab-content.active#projects {
     margin-top: 0 !important;
 }
+
+/* Final fixes for projects section spacing and layout */
+
+/* Adjust top spacing for the projects tab */
+#projects {
+    padding: 0 20px 50px !important;
+    margin-top: 0 !important;
+    position: relative;
+}
+
+/* Fix section title spacing */
+#projects .section-title {
+    margin-top: 15px !important;
+    margin-bottom: 10px !important;
+    padding-top: 0 !important;
+}
+
+/* Fix spacing between title and subtitle */
+#projects .section-subtitle {
+    margin-top: 15px !important;
+    margin-bottom: 30px !important;
+}
+
+/* Improve category cards layout and spacing */
+.project-categories {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem !important;
+    margin-top: 15px !important;
+    margin-bottom: 30px !important;
+    padding: 0 20px !important;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Fix collection layouts */
+.project-collection {
+    padding: 0 20px !important;
+    margin-top: 0 !important;
+}
+
+/* Collection header spacing fix */
+.collection-header {
+    margin-top: 15px !important;
+}
+
+/* Fix scrolling behavior on project views */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Media queries adjustments */
+@media (min-width: 768px) {
+    .project-categories {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 10px !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .project-categories {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 480px) {
+    #projects .section-title {
+        font-size: 1.8rem !important;
+        margin-top: 10px !important;
+    }
+    
+    #projects .section-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
+    }
+}
