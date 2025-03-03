@@ -1444,40 +1444,50 @@ h2 {
         font-size: 0.9rem;
     }
 }
-/* Fix for Projects Tab Spacing */
+/* More aggressive fix for Projects Tab Spacing */
 
-/* Adjust top spacing for the projects tab */
+/* Reset all spacing for the projects tab */
 #projects {
-    padding-top: 0; /* Remove top padding */
-    margin-top: 0; /* Remove top margin */
+    padding: 0 20px 50px !important;
+    margin-top: 0 !important;
+    position: relative;
 }
 
-/* Fix section title spacing */
+/* Create controlled spacing for the title */
 #projects .section-title {
-    margin-top: 20px; /* Add controlled top margin */
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    padding-top: 0 !important;
 }
 
-/* Fix nested margins */
-.tab-content {
-    margin-top: 0;
+/* Make sure there's no extra space in the tab itself */
+.tab-content#projects {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
-/* Additional spacing fixes */
+/* Adjust the main content padding to be more consistent */
 .main-content {
-    padding-top: 20px; /* Reduce top padding of main content */
+    padding-top: 20px;
 }
 
-/* Ensure sidebar doesn't create extra space */
-.portfolio {
-    overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
-/* Make sure the section title's position is relative to its container */
+/* Make sure the section title's positioning is correct */
 #projects .section-title:after {
-    bottom: -8px; /* Move up the underline */
+    bottom: -8px;
 }
 
-/* Reduce space between title and subtitle */
+/* Create proper spacing between title and subtitle */
 #projects .section-subtitle {
-    margin-top: 15px;
+    margin-top: 15px !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Ensure the spacing around category cards is clean */
+.project-categories {
+    margin-top: 30px !important;
+}
+
+/* Fix for any conflicting margin issues in the document */
+body .tab-content.active#projects {
+    margin-top: 0 !important;
 }

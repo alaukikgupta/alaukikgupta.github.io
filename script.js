@@ -9,15 +9,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add functionality for "View Projects" button
     document.addEventListener('DOMContentLoaded', function() {
+        // Setup View Projects button - fixed implementation
         const viewProjectsBtn = document.getElementById('viewProjectsBtn');
+        
         if (viewProjectsBtn) {
             viewProjectsBtn.addEventListener('click', function(e) {
                 e.preventDefault();
+                
                 // Find and click the projects tab button
                 const projectsTabButton = document.querySelector('.menu-item[data-tab="projects"]');
                 if (projectsTabButton) {
                     projectsTabButton.click();
-                    setupProjectsTab();
+                    
+                    // Since the click handler for menu-items might not immediately initialize the projects tab
+                    // Let's add a small delay to ensure the tab is visible before initializing
+                    setTimeout(function() {
+                        setupProjectsTab();
+                    }, 50);
                 }
             });
         }
