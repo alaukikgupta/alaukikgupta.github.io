@@ -1183,6 +1183,7 @@ h2 {
     height: 100%;
 }
 
+/* Remove zoom transform effects on slides */
 .gallery-slide {
     position: absolute;
     top: 0;
@@ -1193,15 +1194,16 @@ h2 {
     background-position: center;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    transform: scale(1.05);
+    transform: none !important; /* Remove any scale transform */
 }
 
 .gallery-slide.active {
     opacity: 1;
-    transform: scale(1);
-    transition: opacity 1s ease-in-out, transform 8s ease-out;
+    transform: none !important; /* Ensure no transform on active slide */
+    transition: opacity 1s ease-in-out;
 }
 
+/* Ensure slide captions are always visible */
 .slide-caption {
     position: absolute;
     bottom: 4rem;
@@ -1209,9 +1211,10 @@ h2 {
     max-width: 500px;
     color: white;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-out 0.5s;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    z-index: 5;
 }
 
 .gallery-slide.active .slide-caption {

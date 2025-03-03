@@ -101,13 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = document.querySelector('.gallery-next');
         let currentSlide = 0;
         let slideInterval;
-
+    
         // Check if gallery elements exist
         if (!slides.length || !dots.length || !prevBtn || !nextBtn) {
             console.warn('Gallery elements not found');
             return;
         }
-
+    
         // Function to change slide
         function goToSlide(index) {
             // Reset all slides and dots
@@ -119,7 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
             
-            // Reset interval
+            // Clear existing interval and restart it
+            resetSlideInterval();
+        }
+        
+        // Function to reset and restart the slideshow interval
+        function resetSlideInterval() {
             clearInterval(slideInterval);
             startSlideShow();
         }
