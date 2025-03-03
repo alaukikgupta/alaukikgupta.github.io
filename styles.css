@@ -328,7 +328,7 @@ h2 {
 /* Hero Gallery */
 .hero-gallery {
     position: relative;
-    height: 75vh;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     margin-bottom: 4rem;
