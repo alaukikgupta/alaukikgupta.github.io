@@ -80,19 +80,24 @@
             <section class="tab-content active" id="home">
                 <div class="hero-gallery">
                     <div class="gallery-slider">
-                        <div class="gallery-slide active" style="background-image: url('IMG_0050.HEIC')">
+                        <!-- First slide with a placeholder since HEIC isn't working -->
+                        <div class="gallery-slide active" style="background-image: url('/api/placeholder/1920/1080')">
                             <div class="slide-caption">
                                 <h2>Medical Device Innovation</h2>
                                 <p>Creating novel solutions that improve patient outcomes and clinical workflows.</p>
                             </div>
                         </div>
-                        <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/1920x1080')">
+                        
+                        <!-- Second slide with your first image -->
+                        <div class="gallery-slide" style="background-image: url('0FFC6708-BE5E-4A77-8C90-32B5964A541A.png')">
                             <div class="slide-caption">
                                 <h2>Healthcare Business Strategy</h2>
                                 <p>Developing commercialization pathways and regulatory strategies for medical technologies.</p>
                             </div>
                         </div>
-                        <div class="gallery-slide" style="background-image: url('https://via.placeholder.com/1920x1080')">
+                        
+                        <!-- Third slide with your second image -->
+                        <div class="gallery-slide" style="background-image: url('your-second-image-path.jpg')">
                             <div class="slide-caption">
                                 <h2>Biomedical Research</h2>
                                 <p>Conducting needs assessments and translating clinical needs into viable solutions.</p>
@@ -114,8 +119,8 @@
                     <h3>Let's Work Together</h3>
                     <p>Looking to bring innovation to healthcare? Let's collaborate on turning complex challenges into impactful solutions.</p>
                     <div class="cta-buttons">
-                        <button class="btn-primary">Contact Me</button>
-                        <button class="btn-secondary">View Projects</button>
+                        <a href="mailto:alaukikalok@gmail.com" class="btn-primary">Contact Me</a>
+                        <a href="#" class="btn-secondary" id="viewProjectsBtn">View Projects</a>
                     </div>
                 </div>
             </section>
@@ -427,6 +432,57 @@
                             </div>
                             <button class="project-details-btn">View Details</button>
                         </div><!-- More engineering projects could be added here -->
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Mimbres Bowl Classification</h3>
+                                <span>2021-2022</span>
+                            </div>
+                            <p>Improved classification accuracy with deep learning techniques by adopting a quadrant-based analysis approach for Mimbres Bowl artifacts.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Enhanced classification accuracy</li>
+                                    <li>Implemented quadrant-based analysis</li>
+                                    <li>Applied innovative deep learning techniques</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Leukemia Detection</h3>
+                                <span>2021-2022</span>
+                            </div>
+                            <p>Led a team building a device to capture blood sample images and developed machine learning solution for leukemia detection. Won first place in the Global Engineering World Health Design Competition.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Blood imaging device development</li>
+                                    <li>Machine learning implementation</li>
+                                    <li>First place in global competition</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Point of Care Ultrasound</h3>
+                                <span>2022-2023</span>
+                            </div>
+                            <p>Published a systematic review paper on Point of Care Ultrasound in low-resource settings and developed a machine learning based medical device for rheumatic heart disease detection.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Published systematic review</li>
+                                    <li>ML algorithm development</li>
+                                    <li>Low-resource setting applications</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
                     </div>
                 </div>
                 
@@ -517,7 +573,58 @@
                             </div>
                             <button class="project-details-btn">View Details</button>
                         </div>
+                        <!-- Additional management projects from resume -->
                         
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Texas Engineering World Health Leadership</h3>
+                                <span>2021-2024</span>
+                            </div>
+                            <p>Managed a team of over 60 students and supervised 15 projects aimed at improving healthcare in low-resource settings. Founded the Biodesign program and secured fully funded research projects.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>60+ member team leadership</li>
+                                    <li>Biodesign program creation</li>
+                                    <li>Department-wide collaborations</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Patient Health Monitor</h3>
+                                <span>2022-2023</span>
+                            </div>
+                            <p>Oversaw a team of 25 individuals in the development of a Patient Health Monitor. Taught engineering principles, design processes, basic circuitry, and microcontroller usage.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>25-member team leadership</li>
+                                    <li>Technical mentorship</li>
+                                    <li>End-to-end project management</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Ultrasonic Vision</h3>
+                                <span>2021-2022</span>
+                            </div>
+                            <p>Participated in the development of Ultrasonic Vision for the Blind, assembling Arduino circuits and improving the goggle setup to aid individuals with limited visibility.</p>
+                            <div class="project-outcomes">
+                                <h4>Key Outcomes:</h4>
+                                <ul>
+                                    <li>Arduino circuit assembly</li>
+                                    <li>Goggle design improvements</li>
+                                    <li>Assistive technology development</li>
+                                </ul>
+                            </div>
+                            <button class="project-details-btn">View Details</button>
+                        </div>
                         <!-- More management projects could be added here -->
                     </div>
                 </div>
